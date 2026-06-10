@@ -9,9 +9,9 @@ const initialState = {
         phone: '',
         position: ''
     },
-    expirience: [
+    experience: [
         {
-            id: Date.now(),
+            id: 1,
             company: '',
             role: '',
             years: ''
@@ -19,10 +19,10 @@ const initialState = {
     ],
     education: [
         {
-            id: Date.now() + 1, // чтобы id не совпадал с опытом + 1
+            id: 1,
             institute: '',
             degree: '',
-            years: ''
+            year: ''
         }
     ],
     theme: 'classic'
@@ -42,7 +42,7 @@ function cvReducer(state, action) {
         case 'ADD_EXPERIENCE': {
             return {
                 ...state,
-                expirience: [
+                experience: [
                     ...state.expirience,
                     {
                         id: Date.now(),
@@ -57,7 +57,7 @@ function cvReducer(state, action) {
             // действие должно содержать id записи и поля для обновления
             return {
                 ...state,
-                expirience: state.expirience.map(item => {
+                experience: state.expirience.map(item => {
                     if (item.id === action.payload.id) {
                         return {
                             ...item,
@@ -77,7 +77,7 @@ function cvReducer(state, action) {
                         id: Date.now(),
                         institute: '',
                         degree: '',
-                        years: ''
+                        year: ''
                     }
                 ]
             };

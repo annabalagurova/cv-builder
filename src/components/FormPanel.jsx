@@ -1,9 +1,16 @@
 import { useCV } from "../context/CVContext";
+import EducationInput from "./EducationInput";
+import ExperienceInput from "./ExperienceInput";
 
 function FormPanel() {
     const { state, dispatch } = useCV();
 
     const handlePersonalChange = (e) => {
+        // console.log('handlePersonalChange вызван!');
+        // console.log('name:', e.target.name);
+        // console.log('value:', e.target.value);
+
+
         dispatch({
             type: 'UPDATE_PERSONAL',
             payload: {
@@ -70,9 +77,35 @@ function FormPanel() {
                 </div>
             </section>
             {/* ОБРАЗОВАНИЕ */}
-
+            <section>
+                <h3>Образование</h3>
+                {state.education.map((item) => (
+                    <EducationInput
+                        key={item.id}
+                        educationItem={item}
+                    />
+                ))}
+                <button
+                    type="button"
+                    onClick={handleAddEducation}
+                >Добавить образование</button>
+            </section>
             {/* ОПЫТ РАБОТЫ */}
-            
+            <section>
+                <h3>Опыт работы</h3>
+                {state.experience.map((item) => (
+                    <ExperienceInput
+                        key={item.id}
+                        experienceItem={item}
+                    />
+                ))}
+                <button
+                    type="button"
+                    onClick={handleAddExperience}
+                >Добавить место работы</button>
+            </section>
         </div>
-    )
+    );
 }
+
+export default FormPanel;
